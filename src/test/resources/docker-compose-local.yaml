@@ -1,0 +1,17 @@
+name: chess-backend
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:14.2
+    environment:
+      POSTGRES_DB: chess
+      POSTGRES_USER: chess_local_user
+      POSTGRES_PASSWORD: chess_local_pass
+    ports:
+      - '55432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+    name: chess_postgres_data

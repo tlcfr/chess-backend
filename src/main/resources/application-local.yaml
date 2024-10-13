@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: chess-backend
+  datasource:
+    url: jdbc:postgresql://localhost:55432/chess
+    username: chess_local_user
+    password: chess_local_pass
