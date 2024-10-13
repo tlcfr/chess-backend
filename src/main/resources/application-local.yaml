@@ -9,3 +9,6 @@ spring:
     clean-disabled: false
     clean-on-validation-error: true
     validate-migration-naming: true
+  data:
+    redis:
+      port: 56379
