@@ -21,6 +21,12 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(name = "white_player_id")
+    private UUID whitePlayerId;
+
+    @Column(name = "black_player_id")
+    private UUID blackPlayerId;
+
     @OrderBy("createdAt DESC")
     @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Arrangement> arrangements;

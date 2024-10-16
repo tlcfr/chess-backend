@@ -13,6 +13,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static ru.tlcfr.chess.helper.SessionHelper.getSessionId;
+
 @Service
 @RequiredArgsConstructor
 public class CreateGameOperation {
@@ -20,16 +22,17 @@ public class CreateGameOperation {
     private final GameRepository gameRepository;
     private final GameMapper gameMapper;
 
-    public GameDto createGame() {
+    public GameDto activate() {
         Game game = new Game();
+
         Arrangement arrangement = new Arrangement();
         arrangement.setPieces(buildArrangementPieces());
         arrangement.setGame(game);
+
         game.setArrangements(List.of(arrangement));
+        game.setWhitePlayerId(getSessionId());
 
-        Game savedGame = gameRepository.save(game);
-
-        return gameMapper.toDto(savedGame);
+        return gameMapper.toDto(gameRepository.save(game));
     }
 
     private List<Piece> buildArrangementPieces() {
